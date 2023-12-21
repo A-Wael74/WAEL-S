@@ -5,12 +5,17 @@
 /************************************************************************/
 #include "osKernel.h"
 #include "osCfg.h"
-#include "stm32f4xx.h"                  
-uint32_t  MILLIS_PRESCALER;
+#include "stm32f4xx.h"  
+#include "STK.h"
+
+uint32_t  MILLIS;
 
 #define SYSPRI3 	 (*((volatile uint32_t *)0xE000ED20))
 #define INTCTRL 	 (*((volatile uint32_t *)0xE000ED04))
-	
+
+#define MAX_QUANTA 1000	
+uint32_t Global_TaskIndex = 0;
+
 void osSchedulerLaunch();
 
 struct tcb
@@ -24,9 +29,6 @@ typedef struct tcb tcb_t;
 tcb_t tcbs[NUM_OF_TASK];
 tcb_t* currentPt;
 int32_t _STACK[NUM_OF_TASK][TASK_STACKSIZE];
-
-uint32_t Global_TaskIndex = 0;
-
 
 static void Task_StackInit(uint32_t task_index, void(*task)(void))
 {
@@ -59,24 +61,28 @@ uint8_t osKernelAddTask (void(*task)(void))
 	return 1;
 }													 
 
-void osKernelInit(void)
+
+void osKernelLaunch()
 {
+	if(Global_TaskIndex == 0)
+	{
+		
+	}
+	else
+	{
+			#if QUANTA>MAX_QUANTA
+					#error "QANTA CAN'T EXCEED 1000ms"
+			#else
+					__disable_irq();
+						MILLIS = AHBBUS_FREQ/1000;  //Value of 1 ms
+						SYSPRI3 =(SYSPRI3&0x00FFFFFF)|0xE0000000; // priority 7 lowest
+						STK_Init();
+						STK_TICKINTEnable();
+						STK_SetVal((QUANTA*MILLIS)-1);
+						osSchedulerLaunch();
+			#endif
+	}
 
-	  //Init the quanta for systick
-}
-
-
-void osKernelLaunch(uint32_t quanta)
-{
-	__disable_irq();
-	MILLIS_PRESCALER = (BUS_FREQ/1000); 
-	SysTick->CTRL = 0;
-	SysTick->VAL  = 0;
-	SysTick->LOAD = (quanta*MILLIS_PRESCALER)-1;  //set quanta in millis
-	SYSPRI3 =(SYSPRI3&0x00FFFFFF)|0xE0000000; // priority 7 lowest
-	
-	SysTick->CTRL = 0x00000007; //Init Systick
-	osSchedulerLaunch();
 }
 
 void osSchedulerRR()
@@ -161,3 +167,11 @@ void SemaphoreWait(Semaphor_t* S)
 //	__enable_irq();
 //}
 
+/*
+//	MILLIS_PRESCALER = (BUS_FREQ/1000); 
+//	SysTick->CTRL = 0;
+//	SysTick->VAL  = 0;
+//	SysTick->LOAD = (quanta*MILLIS_PRESCALER)-1;  //set quanta in millis
+//SysTick->CTRL = 0x00000007; //Init Systick
+
+*/

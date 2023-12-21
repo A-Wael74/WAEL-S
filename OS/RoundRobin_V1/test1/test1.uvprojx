@@ -323,13 +323,13 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>3</wLevel>
+            <wLevel>4</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
-            <uC99>0</uC99>
+            <uC99>1</uC99>
             <uGnu>1</uGnu>
             <useXO>0</useXO>
-            <v6Lang>1</v6Lang>
+            <v6Lang>3</v6Lang>
             <v6LangP>5</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
@@ -413,6 +413,31 @@
               <FileName>osCfg.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\osCfg.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>STK.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\STK.c</FilePath>
+            </File>
+            <File>
+              <FileName>STK.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\STK.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>utils</GroupName>
+          <Files>
+            <File>
+              <FileName>bitmath.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\bitmath.h</FilePath>
             </File>
           </Files>
         </Group>

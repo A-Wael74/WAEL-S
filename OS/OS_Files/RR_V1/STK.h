@@ -1,20 +1,20 @@
 /************************************************************************/
 /*     Author: Ahmed Wael									         											*/
-/*     Date: 20 December 2023								       											*/
+/*     Date: 21 December 2023								       											*/
 /*     Version: V01											       	  											*/
 /************************************************************************/
 
-#ifndef OS_CFG_H
-#define OS_CFG_H
+#ifndef STK_H
+#define STK_H
 
+#include <stdint.h>  
 
-#define NUM_OF_TASK 4
+void STK_Init();
 
-#define TASK_STACKSIZE 100
+void STK_TICKINTEnable();
 
-#define AHBBUS_FREQ 16000000
+void STK_SetVal(uint32_t val);
 
-#define QUANTA  1000
 
 
 #endif

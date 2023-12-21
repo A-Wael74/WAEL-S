@@ -8,12 +8,13 @@
 #define OS_CFG_H
 
 
-#define NUM_OF_TASK 3
+#define NUM_OF_TASK 4
 
 #define TASK_STACKSIZE 100
 
-#define BUS_FREQ 16000000
+#define AHBBUS_FREQ 16000000
 
+#define QUANTA  1000
 
 
 #endif

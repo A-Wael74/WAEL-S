@@ -3,24 +3,21 @@
 /*     Date: 20 December 2023								       											*/
 /*     Version: V01											       	  											*/
 /************************************************************************/
-
-
-
 #ifndef OS_KERNEL_H
 #define OS_KERNEL_H
 
-#include <stdint.h>                 // Device header
+#include <stdint.h>
+#include "osCfg.h"
 
 typedef struct 
 {
 	uint8_t State;
 }Semaphor_t;
 
-uint8_t osKernelAddTask (void(*task)(void));
 
-void osKernelInit(void);		
+uint8_t osKernelAddTask (void(*task)(void));
 												 
-void osKernelLaunch(uint32_t quanta);
+void osKernelLaunch();
 												 
 void osTaskYield(void);
 

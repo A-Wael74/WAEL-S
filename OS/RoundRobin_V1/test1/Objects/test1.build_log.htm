@@ -22,28 +22,34 @@ Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 D:\Courses\04.RTOS Gebti\MyOs\test1\test1.uvprojx
-Project File Date:  12/20/2023
+Project File Date:  12/21/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'STM32F446RE'
 Note: source file '.\osKernel.s' - object file renamed from '.\Objects\osKernel.o' to '.\Objects\oskernel_1.o'.
 Note: source file '.\osKernel.s' - object file renamed from '.\Objects\osKernel.o' to '.\Objects\oskernel_1.o'.
-assembling startup_stm32f446xx.s...
 assembling osKernel.s...
+assembling startup_stm32f446xx.s...
 warning: unknown warning option '-Wno-reserved-identifier'; did you mean '-Wno-reserved-id-macro'? [-Wunknown-warning-option]
 1 warning generated.
-compiling main.c...
+compiling STK.c...
 warning: unknown warning option '-Wno-reserved-identifier'; did you mean '-Wno-reserved-id-macro'? [-Wunknown-warning-option]
 1 warning generated.
 compiling system_stm32f4xx.c...
 warning: unknown warning option '-Wno-reserved-identifier'; did you mean '-Wno-reserved-id-macro'? [-Wunknown-warning-option]
 1 warning generated.
 compiling osKernel.c...
+warning: unknown warning option '-Wno-reserved-identifier'; did you mean '-Wno-reserved-id-macro'? [-Wunknown-warning-option]
+main.c(25): warning: function cannot return qualified void type 'volatile void' [-Wqualified-void-return-type]
+volatile void LED_TOG()
+                     ^
+2 warnings generated.
+compiling main.c...
 linking...
-Program Size: Code=784 RO-data=468 RW-data=0 ZI-data=2880  
+Program Size: Code=924 RO-data=468 RW-data=0 ZI-data=3288  
 FromELF: creating hex file...
-".\Objects\test1.axf" - 0 Error(s), 3 Warning(s).
+".\Objects\test1.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -69,10 +75,10 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.6.3
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f446xx.s
+      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   MDK/Device/Source/ARM/STM32F446xx_OPT.s
       Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
-      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f446xx.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
 Build Time Elapsed:  00:00:01
 </pre>
